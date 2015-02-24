@@ -83,7 +83,7 @@ public class BayeuxServerImpl extends AbstractLifeCycle implements BayeuxServer
     private final ConcurrentMap<String, ServerChannelImpl> _channels = new ConcurrentHashMap<String, ServerChannelImpl>();
     private final ConcurrentMap<String, ServerTransport> _transports = new ConcurrentHashMap<String, ServerTransport>();
     private final List<String> _allowedTransports = new CopyOnWriteArrayList<String>();
-    private final ThreadLocal<AbstractServerTransport> _currentTransport = new ThreadLocal<AbstractServerTransport>();
+    private final ThreadLocal<ServerTransport> _currentTransport = new ThreadLocal<ServerTransport>();
     private final Map<String,Object> _options = new TreeMap<String, Object>();
     private final Timeout _timeout = new Timeout();
 
@@ -306,7 +306,7 @@ public class BayeuxServerImpl extends AbstractLifeCycle implements BayeuxServer
     }
 
     /* ------------------------------------------------------------ */
-    public void setCurrentTransport(AbstractServerTransport transport)
+    public void setCurrentTransport(ServerTransport transport)
     {
         _currentTransport.set(transport);
     }
